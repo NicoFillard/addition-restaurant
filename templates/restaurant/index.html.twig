@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restaurant{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Restaurant</h1>
+
+    <form action="{{ path('addition') }}" method="get">
+        <label for="sandwich">Number of sandwich: </label>
+        <input type="number" id="sandwich" name="sandwich">
+
+        <label for="drink">Number of drink: </label>
+        <input type="number" id="drink" name="drink">
+
+        <input type="submit">
+    </form>
+</div>
+
+{% endblock %}
