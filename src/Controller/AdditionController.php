@@ -2,26 +2,23 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdditionController extends AbstractController
 {
-    protected $request;
-
-    public function __construct(Request $request)
-    {
-        $this->request = $request;
-    }
 
     /**
      * @Route("/addition", name="addition")
+     * @param Request $request
+     * @return Response
      */
-    public function addition()
+    public function addition(Request $request)
     {
-        $numberSandwich = $this->request->get('sandwich');
-        $numberDrink = $this->request->get('drink');
+        $numberSandwich = $request->query->get('sandwich');
+        $numberDrink = $request->query->get('drink');
 
         $remiseSandwich = 0;
         $remiseDrink = 0;
