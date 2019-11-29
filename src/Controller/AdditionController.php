@@ -17,24 +17,17 @@ class AdditionController extends AbstractController
      */
     public function addition(Request $request)
     {
+        //Get Number of sandwiches and drinks
         $numberSandwich = $request->query->get('sandwich');
         $numberDrink = $request->query->get('drink');
 
-        $remiseSandwich = 0;
-        $remiseDrink = 0;
+        //Calculate the discount
+        $discountSandwich = $numberSandwich % 5 == 0 ? $numberSandwich / 5 * 3 : 0;
+        $discountDrink = $numberDrink % 10 == 0 ? $numberDrink / 10 * 2 : 0;
 
-        if ($numberSandwich != 0 && $numberSandwich % 5 == 0) {
-            $remiseNumberSandwich = $numberSandwich / 5;
-            $remiseSandwich = $remiseNumberSandwich * 3;
-        }
-
-        if ($numberDrink != 0 && $numberDrink % 10 == 0) {
-            $remiseNumberDrink = $numberDrink / 10;
-            $remiseDrink = $remiseNumberDrink * 2;
-        }
-
-        $additionSandwich = $numberSandwich * 3 - $remiseSandwich;
-        $additionDrink = $numberDrink * 2 - $remiseDrink;
+        //Addition with the discount
+        $additionSandwich = $numberSandwich * 3 - $discountSandwich;
+        $additionDrink = $numberDrink * 2 - $discountDrink;
 
         $total = $additionSandwich + $additionDrink;
 
